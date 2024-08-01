@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Order Food</title>
+</head>
+
+<body>
+    <header>
+        <div class="container main-header">
+            <h1>Fast Food👑🍔</h1>
+            <button class="clear button def-font">Clear</button>
+        </div>
+    </header>
+    <main>
+        <section>
+            <div class="container food-con">
+                <div class="food-menu">
+                    <div>
+                        <label class="def-font" for="menu">Food Menu:</label>
+                        <select class="def-font" name="menu" id="menu">
+                            <option value="select" class="def-font">Select</option>
+                            <option class="def-font" value="Burger">Burger</option>
+                            <option class="def-font" value="Corndog">Corndog</option>
+                            <option class="def-font" value="Fries">Fries</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="def-font" for="quantity">Quantity: </label>
+                        <input class="def-font" type="number" id="quantity">
+                    </div>
+                    <div>
+                        <button class="def-font button add">Add</button>
+                        <p class="def-font">Price: $<span class="price">250</span></p>
+                    </div>
+                </div>
+
+                <aside>
+                    <h1>Total Order:</h1>
+                    <p class="burger">Burger x<span class="burger-quantity">0</span></p>
+                    <p class="corndog">Corndog x<span class="corndog-quantity">0</span></p>
+                    <p class="fries">Fries x<span class="fries-quantity">0</span></p>
+                    <p class="total-amount-main">Total Amount: $<span class="total-amount">0</span></p>
+                </aside>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="./assets/js/index.js"></script>
+</body>
+
+</html>

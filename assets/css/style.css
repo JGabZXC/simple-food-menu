@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+    --text-1: #502314;
+    --text-2: #F5EBDC;
+
+    --accent-1: #D62300;
+
+    --bg-c: #F8F1EB;
+
+    --ff-primary: "Open Sans", sans-serif;
+    /*Font Weight 300 - 900*/
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-c);
+    font-family: var(--ff-primary);
+}
+
+/*
+---------------- GLOBAL
+*/
+.container {
+    width: min(720px, 90%);
+    margin: 0 auto;
+}
+
+.def-font {
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.button {
+    background-color: var(--accent-1);
+    color: var(--text-2);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/*
+---------------- HEADER
+*/
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+
+
+/*
+---------------- FOOD MENU
+*/
+#menu {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.food-con {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.food-menu div:nth-child(1)>* {
+    margin-bottom: 1.5rem;
+}
+
+.food-menu div:nth-child(2)>* {
+    display: flex;
+    flex-direction: column;
+}
+
+.food-menu div:nth-child(2) label {
+    margin-bottom: 0.5rem;
+}
+
+.food-menu div:nth-child(2) input {
+    margin-bottom: 1.5rem;
+}
+
+.food-menu div:nth-child(3) button {
+    margin-bottom: 0.5rem;
+}
+
+.food-menu div:nth-child(3) p {
+    margin-bottom: 1.5rem;
+}
+
+aside p {
+    margin-top: .5rem;
+}
+
+.total-amount-main {
+    font-weight: 600;
+    margin-top: 2rem;
+}
+
+@media (width <=500px) {
+    .food-con {
+        flex-direction: column;
+    }
+}
