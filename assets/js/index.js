@@ -37,6 +37,7 @@ function init() {
   totalThree[0] = 0; // Burger
   totalThree[1] = 0; // Corndog
   totalThree[2] = 0; // Fries
+  menuElement.value = "select";
 }
 
 init(); // Reset on script load
