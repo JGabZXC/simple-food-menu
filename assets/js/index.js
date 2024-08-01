@@ -65,7 +65,7 @@ const foodItem = {
 function food(name) {
   const foodSelected = foodItem[name];
   let quantity = Number(quantityElement.value);
-  let val = Number(burgerQuantityElement.textContent);
+  let val = Number(foodSelected.quantityElement.textContent);
 
   foodSelected.element.classList.remove("hidden");
   foodSelected.quantityElement.textContent = val + quantity;
