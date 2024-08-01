@@ -55,15 +55,18 @@ body {
     padding: 20px 0;
 }
 
-
-
 /*
 ---------------- FOOD MENU
 */
 #menu {
     border: none;
     background-color: transparent;
+    outline: none;
     cursor: pointer;
+}
+
+#menu:focus {
+    outline: none;
 }
 
 .hidden {
@@ -91,6 +94,14 @@ body {
 
 .food-menu div:nth-child(2) input {
     margin-bottom: 1.5rem;
+    padding: 5px;
+    outline: none;
+    border: none;
+}
+
+.food-menu div:nth-child(2) input:focus {
+    outline: none;
+    border: none;
 }
 
 .food-menu div:nth-child(3) button {

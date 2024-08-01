@@ -21,96 +21,9 @@ const addEl = document.querySelector(".add");
 // Initialized
 let total = 0;
 const totalThree = [0, 0, 0]; // 0 = Burger, 1 = Corndog, 2 = Fries
-const burgerPrice = 3;
-const corndogPrice = 5;
-const friesPrice = 2;
 const sum = (val1, val2, val3) => val1 + val2 + val3;
-burgerElement.classList.add("hidden");
-corndogElement.classList.add("hidden");
-friesElement.classList.add("hidden");
-priceElement.textContent = "0";
 
-menuElement.addEventListener("click", function () {
-  let quantity = Number(quantityElement.value);
-  if (menuElement.value === "Burger") {
-    priceElement.textContent = burgerPrice;
-    if (quantity > 0) {
-      priceElement.textContent = burgerPrice * quantity;
-    }
-  } else if (menuElement.value === "Corndog") {
-    priceElement.textContent = corndogPrice;
-    if (quantity > 0) {
-      priceElement.textContent = corndogPrice * quantity;
-    }
-  } else if (menuElement.value === "Fries") {
-    priceElement.textContent = friesPrice;
-    if (quantity > 0) {
-      priceElement.textContent = friesPrice * quantity;
-    }
-  } else {
-    priceElement.textContent = 0;
-  }
-});
-
-quantityElement.addEventListener("change", function () {
-  let quantity = Number(quantityElement.value);
-  if (quantity > 0) {
-    if (menuElement.value === "Burger") {
-      priceElement.textContent = burgerPrice * quantity;
-    } else if (menuElement.value === "Corndog") {
-      priceElement.textContent = corndogPrice * quantity;
-    } else if (menuElement.value === "Fries") {
-      priceElement.textContent = friesPrice * quantity;
-    } else {
-      priceElement.textContent = 0;
-    }
-  }
-});
-
-addEl.addEventListener("click", function () {
-  let quantity = Number(quantityElement.value);
-  if (quantity > 0) {
-    if (menuElement.value === "Burger") {
-      let val = Number(burgerQuantityElement.textContent);
-      burgerElement.classList.remove("hidden");
-      burgerQuantityElement.textContent = val + quantity;
-      val = Number(burgerQuantityElement.textContent);
-      totalThree[0] += burgerPrice * quantity;
-      totalAmount.textContent = sum(
-        totalThree[0],
-        totalThree[1],
-        totalThree[2]
-      );
-    } else if (menuElement.value === "Corndog") {
-      let val = Number(corndogQuantityElement.textContent);
-      corndogElement.classList.remove("hidden");
-      corndogQuantityElement.textContent = val + quantity;
-      val = Number(corndogQuantityElement.textContent);
-      totalThree[0] += corndogPrice * quantity;
-      totalAmount.textContent = sum(
-        totalThree[0],
-        totalThree[1],
-        totalThree[2]
-      );
-    } else if (menuElement.value === "Fries") {
-      let val = Number(friesQuantityElement.textContent);
-      friesElement.classList.remove("hidden");
-      friesQuantityElement.textContent = val + quantity;
-      val = Number(friesQuantityElement.textContent);
-      totalThree[0] += friesPrice * quantity;
-      totalAmount.textContent = sum(
-        totalThree[0],
-        totalThree[1],
-        totalThree[2]
-      );
-    }
-  }
-  priceElement.textContent = 0;
-  menuElement.value = "select";
-  quantityElement.value = "";
-});
-
-clearEl.addEventListener("click", function () {
+function init() {
   total = 0;
   burgerElement.classList.add("hidden");
   corndogElement.classList.add("hidden");
@@ -124,4 +37,95 @@ clearEl.addEventListener("click", function () {
   totalThree[0] = 0; // Burger
   totalThree[1] = 0; // Corndog
   totalThree[2] = 0; // Fries
+}
+
+init(); // Reset on script load
+
+const foodItem = {
+  burger: {
+    element: burgerElement,
+    quantityElement: burgerQuantityElement,
+    price: 3,
+    index: 0,
+  },
+  corndog: {
+    element: corndogElement,
+    quantityElement: corndogQuantityElement,
+    price: 5,
+    index: 1,
+  },
+  fries: {
+    element: friesElement,
+    quantityElement: friesQuantityElement,
+    price: 2,
+    index: 2,
+  },
+};
+
+function food(name) {
+  const foodSelected = foodItem[name];
+  let quantity = Number(quantityElement.value);
+  let val = Number(burgerQuantityElement.textContent);
+
+  foodSelected.element.classList.remove("hidden");
+  foodSelected.quantityElement.textContent = val + quantity;
+  val = Number(foodSelected.quantityElement.textContent);
+  totalThree[foodSelected.index] += foodSelected.price * quantity;
+  totalAmount.textContent = sum(totalThree[0], totalThree[1], totalThree[2]);
+}
+
+function changePrice(name, quanAmount) {
+  const foodSelected = foodItem[name];
+  priceElement.textContent = foodSelected.price;
+  if (quanAmount > 0) {
+    priceElement.textContent = foodSelected.price * quanAmount;
+  }
+}
+
+menuElement.addEventListener("click", function () {
+  let quantity = Number(quantityElement.value);
+  if (menuElement.value === "Burger") {
+    changePrice("burger", quantity);
+  } else if (menuElement.value === "Corndog") {
+    changePrice("corndog", quantity);
+  } else if (menuElement.value === "Fries") {
+    changePrice("fries", quantity);
+  } else {
+    priceElement.textContent = 0;
+  }
+});
+
+quantityElement.addEventListener("change", function () {
+  let quantity = Number(quantityElement.value);
+  if (quantity > 0) {
+    if (menuElement.value === "Burger") {
+      changePrice("burger", quantity);
+    } else if (menuElement.value === "Corndog") {
+      changePrice("corndog", quantity);
+    } else if (menuElement.value === "Fries") {
+      changePrice("fries", quantity);
+    } else {
+      priceElement.textContent = 0;
+    }
+  }
+});
+
+addEl.addEventListener("click", function () {
+  let quantity = Number(quantityElement.value);
+  if (quantity > 0) {
+    if (menuElement.value === "Burger") {
+      food("burger");
+    } else if (menuElement.value === "Corndog") {
+      food("corndog");
+    } else if (menuElement.value === "Fries") {
+      food("fries");
+    }
+  }
+  priceElement.textContent = 0;
+  menuElement.value = "select";
+  quantityElement.value = "";
+});
+
+clearEl.addEventListener("click", function () {
+  init();
 });
